@@ -1,5 +1,14 @@
-.blue-background {
-    background-color: blue;
+.hidden {
+    display: none;
+}
+
+.navigation__button {
+    background-color: #000;
+    border: 0;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 1rem;
+    padding: 1rem 2rem;
 }
 
 /*# sourceMappingURL=/main.c52e0fe2.css.map */

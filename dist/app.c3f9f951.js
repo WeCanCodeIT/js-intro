@@ -117,42 +117,60 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/utils/button-click.js":[function(require,module,exports) {
-"use strict";
+})({"js/utils/Components.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function toggleBackground() {
-  var submitButton = document.querySelector('.submit-button');
-  var firstName = document.querySelector('.first-name');
-  var output = document.querySelector('.output');
-  submitButton.addEventListener('click', function () {
-    var value = firstName.value;
-    output.innerHTML = value;
-    output.classList.toggle('blue-background');
-  });
-}
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var _default = {
-  toggleBackground: toggleBackground
-};
-exports.default = _default;
+var Components =
+/*#__PURE__*/
+function () {
+  function Components() {
+    _classCallCheck(this, Components);
+  }
+
+  _createClass(Components, [{
+    key: "createElement",
+    value: function createElement(elementType) {
+      if (!elementType) {
+        throw new Error('Must pass valid HTML Element');
+      }
+
+      var createdElement = document.createElement(elementType);
+      return createdElement;
+    }
+  }, {
+    key: "createNavigationMenu",
+    value: function createNavigationMenu() {
+      var navElement = this.createElement('nav');
+      var ulElement = this.createElement('ul');
+      var buttonElement = this.createElement('button');
+      ulElement.classList.add('hidden');
+      ulElement.textContent = 'This is my navigation';
+      buttonElement.classList.add('navigation__button');
+      buttonElement.textContent = 'MENU';
+      buttonElement.addEventListener('click', function () {
+        ulElement.classList.toggle('hidden');
+      });
+      navElement.appendChild(buttonElement);
+      navElement.appendChild(ulElement);
+      return navElement;
+    }
+  }]);
+
+  return Components;
+}();
+
+module.exports = Components;
 },{}],"js/app.js":[function(require,module,exports) {
-"use strict";
+var Components = require('./utils/Components');
 
-var _buttonClick = _interopRequireDefault(require("./utils/button-click"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// const body = document.body
-// setTimeout(() => {
-//     body.innerHTML = "<h2>Something new!</h2>"
-// }, 5000)
-_buttonClick.default.toggleBackground();
-},{"./utils/button-click":"js/utils/button-click.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var components = new Components();
+var mainHeader = document.querySelector('.main-header');
+mainHeader.appendChild(components.createNavigationMenu());
+},{"./utils/Components":"js/utils/Components.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -180,7 +198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49636" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

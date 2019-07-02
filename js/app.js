@@ -1,9 +1,6 @@
-import buttonClick from './utils/button-click'
+const Components = require('./utils/Components')
 
-// const body = document.body
+const components = new Components()
+const mainHeader = document.querySelector('.main-header')
 
-// setTimeout(() => {
-//     body.innerHTML = "<h2>Something new!</h2>"
-// }, 5000)
-
-buttonClick.toggleBackground()
+mainHeader.appendChild(components.createNavigationMenu())

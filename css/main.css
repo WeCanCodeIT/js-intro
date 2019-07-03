@@ -1,5 +1,38 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color: #333;
+    font: 20px/1 sans-serif;
+}
+
+li {
+    padding-bottom: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Application Classes */
 .hidden {
     display: none;
+}
+
+.main-footer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
 }
 
 .navigation__button {
@@ -9,4 +42,23 @@
     color: #fff;
     font-size: 1rem;
     padding: 1rem 2rem;
+}
+
+/* Utility Classes */
+.container {
+    margin: 0 auto;
+    max-width: 30rem;
+    width: 90%;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: 150px auto 200px;
+}
+
+/* Theming Classes */
+
+.dark {
+    background-color: #333;
+    color: #ddd;
 }

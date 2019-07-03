@@ -147,8 +147,23 @@ function () {
       var navElement = this.createElement('nav');
       var ulElement = this.createElement('ul');
       var buttonElement = this.createElement('button');
+      var liElements;
+      var pages = ['index', 'about'];
+      liElements = pages.map(function (page) {
+        // creating all elements
+        var liElement = document.createElement('li');
+        var aElement = document.createElement('a'); // assigning text value to anchor
+
+        aElement.textContent = page; // assign an href attribute to anchor
+
+        aElement.setAttribute('href', "/".concat(page, ".html")); // adding anchor to list item
+
+        liElement.appendChild(aElement); // sending li somewhere
+
+        return liElement.outerHTML;
+      });
       ulElement.classList.add('hidden');
-      ulElement.textContent = 'This is my navigation';
+      ulElement.innerHTML = liElements.join('');
       buttonElement.classList.add('navigation__button');
       buttonElement.textContent = 'MENU';
       buttonElement.addEventListener('click', function () {
@@ -164,13 +179,49 @@ function () {
 }();
 
 module.exports = Components;
+},{}],"js/utils/Events.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Events =
+/*#__PURE__*/
+function () {
+  function Events() {
+    _classCallCheck(this, Events);
+  }
+
+  _createClass(Events, [{
+    key: "toggleTheme",
+    value: function toggleTheme() {
+      var body = document.body;
+      var themeButton = document.querySelector('.theme-button');
+      themeButton.addEventListener('click', function () {
+        body.classList.toggle('dark'); // For more than two themes
+        // body.classList.remove('light')
+        // body.classList.remove('green')
+        // body.classList.add('dark')
+      });
+    }
+  }]);
+
+  return Events;
+}();
+
+module.exports = Events;
 },{}],"js/app.js":[function(require,module,exports) {
 var Components = require('./utils/Components');
 
+var Events = require('./utils/Events');
+
 var components = new Components();
+var events = new Events();
 var mainHeader = document.querySelector('.main-header');
 mainHeader.appendChild(components.createNavigationMenu());
-},{"./utils/Components":"js/utils/Components.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+events.toggleTheme();
+},{"./utils/Components":"js/utils/Components.js","./utils/Events":"js/utils/Events.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -198,7 +249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59945" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
